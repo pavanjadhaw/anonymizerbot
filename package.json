@@ -1,0 +1,28 @@
+{
+	"name": "anonomiserbot",
+	"version": "0.0.1",
+	"description": "telegram bot to anonomise forwarded messages and media",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pavanjadhaw/anonomiserBot.git"
+	},
+	"keywords": [
+		"anonomiserBot",
+		"bot",
+		"telegram"
+	],
+	"author": "Pavan Jadhaw <@pavanjadhaw>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/pavanjadhaw/anonomiserBot/issues"
+	},
+	"homepage": "https://github.com/pavanjadhaw/anonomiserBot#readme",
+	"dependencies": {
+		"telegraf": "^3.25.0"
+	}
+}
