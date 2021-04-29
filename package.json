@@ -23,6 +23,6 @@
 	},
 	"homepage": "https://github.com/pavanjadhaw/anonomiserBot#readme",
 	"dependencies": {
-		"telegraf": "^3.25.0"
+		"telegraf": "^4.3.0"
 	}
 }

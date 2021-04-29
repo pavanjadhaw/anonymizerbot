@@ -1,24 +1,25 @@
-const Telegraf = require('telegraf');
-const Extra = require('telegraf/extra');
-const Markup = require('telegraf/markup');
-
-const config = require('./config.js');
-
-const keyboard = Markup.inlineKeyboard([
-	Markup.callbackButton('Delete', 'delete'),
-]);
+const { Telegraf } = require('telegraf');
 
 const help =
-	`Welcome to @anonomiserBot\n\n` +
-	`Forward any message, photos, files, etc. to this bot.\n` +
-	`The bot will reply your message, without any indication where this message is from.\n` +
-	`When forwarding it to everywhere you want, nobody will know the origin or original caption.`;
+  `Welcome to @anonomiserBot\n\n` +
+  `Forward any message, photos, files, etc. to this bot.\n` +
+  `The bot will reply your message, without any indication where this message is from.\n` +
+  `When forwarding it to everywhere you want, nobody will know the origin or original caption.`;
 
-const bot = new Telegraf(config.botApiKey);
+const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.start(ctx => ctx.reply(help));
 bot.help(ctx => ctx.reply(help));
-bot.on('message', ctx =>
-	ctx.telegram.sendCopy(ctx.from.id, ctx.message, Extra.markup(keyboard))
-);
-bot.action('delete', ({ deleteMessage }) => deleteMessage());
-bot.startPolling();
+
+bot.on('message', async ctx => {
+  try {
+    await ctx.telegram.sendCopy(ctx.from.id, ctx.message);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+bot.launch();
+bot.catch(error => console.error(error));
+
+process.once('SIGINT', () => bot.stop('SIGINT'));
+process.once('SIGTERM', () => bot.stop('SIGTERM'));
